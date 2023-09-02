@@ -1,0 +1,10 @@
+server:
+  shutdown: IMMEDIATE
+spring:
+  profiles:
+    active: dev
+  #    active: prod #prod environment
+  application:
+    name: SpringBootDemo
+  main:
+    allow-bean-definition-overriding: true

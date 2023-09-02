@@ -1,0 +1,66 @@
+server:
+  port: 8020
+  undertow:
+    threads:
+      # Set IO number of thread, it's used to execute non-block tasks.
+      io: 4
+      # Blocking task thread pool, when executing similar servlet request blocking IO operations, undertow will get threads from this thread pool
+      # Its value setting depends on the blocking coefficient of the system thread execution task, the default value is: io-threads * 8
+      worker: 32
+    buffer-size: 1024
+    direct-buffers: true
+    max-http-post-size: -1B
+    eager-filter-init: true
+    max-parameters: 1000
+    max-headers: 200
+    max-cookies: 200
+    # If allow URL decoding, the default is true, and everything except %2F will be processed
+    decode-url: true
+    url-charset: utf-8
+    # Whether the http header of the response will add 'Connection: keep-alive', the default is true
+    always-set-keep-alive: true
+    no-request-timeout: -1
+    decode-slash: false
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/accessmanagement?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      timeout: 5000
+      jedis:
+        pool:
+          max-active: 30
+          max-idle: 30
+          min-idle: 10
+          max-wait: -1 #Connection pool maximum waiting time -1 no limit
+
+db:
+  hostIP: 127.0.0.1
+  userName: root
+  password: 123456
+  savePath: D:/SpringBootDemo
+  sqlPath: D:/SpringBootDemo/SpringBootDemo.sql
+  databaseName: SpringBootDemo
+
+# netty-socketio
+socketio:
+  host: 127.0.0.1
+  port: 8017
+  # Set the maximum length of data processed per frame to prevent others from using large data to attack the server
+  maxFramePayloadLength: 1048576
+  # Set http interaction maximum content length
+  maxHttpContentLength: 1048576
+  bossCount: 1
+  workCount: 100
+  allowCustomRequests: true
+  # Protocol upgrade timeout (milliseconds), the default is 10 seconds. HTTP handshake upgrade to ws protocol timeout
+  upgradeTimeout: 1000000
+  pingTimeout: 6000000
+  pingInterval: 25000
