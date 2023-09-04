@@ -40,6 +40,8 @@ spring:
           max-idle: 30
           min-idle: 10
           max-wait: -1 #Connection pool maximum waiting time -1 no limit
+  jpa:
+    show-sql: true
 
 db:
   hostIP: 127.0.0.1
