@@ -57,4 +57,23 @@ public class SysMenu {
     @Column(name = "remark", length = 500)
     private String remark;
 
+    @Override
+    public String toString() {
+        return "SysMenu{" +
+                "id=" + id +
+                ", menuName='" + menuName + '\'' +
+                ", parentId=" + parentId +
+                ", orderNum=" + orderNum +
+                ", url='" + url + '\'' +
+                ", menuType='" + menuType + '\'' +
+                ", visible='" + visible + '\'' +
+                ", perms='" + perms + '\'' +
+                ", icon='" + icon + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createTime=" + createTime +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateTime=" + updateTime +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

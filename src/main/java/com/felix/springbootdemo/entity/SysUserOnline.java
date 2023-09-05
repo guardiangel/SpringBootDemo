@@ -48,4 +48,20 @@ public class SysUserOnline {
     @Column(name = "expire_time")
     private Integer expireTime;
 
+    @Override
+    public String toString() {
+        return "SysUserOnline{" +
+                "sessionId='" + sessionId + '\'' +
+                ", loginName='" + loginName + '\'' +
+                ", deptName='" + deptName + '\'' +
+                ", ipaddr='" + ipaddr + '\'' +
+                ", loginLocation='" + loginLocation + '\'' +
+                ", browser='" + browser + '\'' +
+                ", os='" + os + '\'' +
+                ", status='" + status + '\'' +
+                ", startTimestsamp=" + startTimestsamp +
+                ", lastAccessTime=" + lastAccessTime +
+                ", expireTime=" + expireTime +
+                '}';
+    }
 }

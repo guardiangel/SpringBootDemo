@@ -564,3 +564,138 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-09-02  1:10:50
+
+
+-- ----------------------------
+-- Table structure for score_class
+-- ----------------------------
+DROP TABLE IF EXISTS `score_class`;
+CREATE TABLE `score_class`  (
+        `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
+        `create_user_name` varchar(10)  NULL DEFAULT NULL ,
+        `create_time` datetime(0) NULL DEFAULT NULL ,
+        `update_user_name` varchar(10)  NULL DEFAULT NULL ,
+        `update_time` datetime(0) NULL DEFAULT NULL ,
+        `class_no` varchar(20)  NULL DEFAULT NULL ,
+        `class_name` varchar(10)  NULL DEFAULT NULL,
+        `class_teacher` varchar(10)  NULL DEFAULT NULL ,
+        `class_status` int(1) NULL DEFAULT NULL COMMENT 'class status（1：available；2：non-available）',
+        `class_desc` varchar(100)  NULL DEFAULT NULL ,
+        PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB ;
+
+-- ----------------------------
+-- Records of score_class
+-- ----------------------------
+INSERT INTO `score_class` VALUES (1, 'Teacher Liu', '2023-05-14 20:14:52', 'Teacher Liu', '2023-05-14 20:14:59', '8537240', 'Grade one', 'Jerry', 1, 'Excellent class');
+INSERT INTO `score_class` VALUES (2, 'Teacher Liu', '2023-05-14 20:15:14', 'Teacher Liu', '2023-05-14 20:15:16', '0741478', 'Grade two', 'Tom', 1, 'Good class');
+INSERT INTO `score_class` VALUES (3, 'Teacher Liu', '2023-05-14 20:15:35', 'Teacher Liu', '2023-05-14 20:15:37', '4855566', 'Grade three', 'Felix', 1, 'Nice class');
+INSERT INTO `score_class` VALUES (4, 'Teacher Liu', '2023-05-14 20:15:48', 'Teacher Liu', '2023-05-14 20:16:08', '6187162', 'Grade four', 'Cathy', 1, 'Elegant class');
+INSERT INTO `score_class` VALUES (5, 'Teacher Liu', '2023-05-14 20:16:04', 'Teacher Liu', '2023-05-14 20:16:06', '0402136', 'Grade five', 'John', 1, 'Rock star');
+
+-- ----------------------------
+-- Table structure for score_details
+-- ----------------------------
+DROP TABLE IF EXISTS `score_details`;
+CREATE TABLE `score_details`  (
+          `id` bigint(20) NOT NULL AUTO_INCREMENT ,
+          `create_user_name` varchar(10)  NULL DEFAULT NULL ,
+          `create_time` datetime(0) NULL DEFAULT NULL ,
+          `update_user_name` varchar(10)  NULL DEFAULT NULL ,
+          `update_time` datetime(0) NULL DEFAULT NULL ,
+          `stu_id` bigint(20) NULL DEFAULT NULL ,
+          `subject_id` bigint(20) NULL DEFAULT NULL ,
+          `score_value` int(11) NULL DEFAULT NULL ,
+          PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB ;
+
+-- ----------------------------
+-- Records of score_details
+-- ----------------------------
+INSERT INTO `score_details` VALUES (1, 'Teacher Liu', '2023-05-14 22:18:12', 'Teacher Liu', '2023-05-14 22:18:16', 1, 4, 99);
+INSERT INTO `score_details` VALUES (2, 'Teacher Liu', '2023-05-14 22:22:07', 'Teacher Liu', '2023-05-14 22:23:00', 2, 1, 69);
+INSERT INTO `score_details` VALUES (3, 'Teacher Liu', '2023-05-14 22:22:51', 'Teacher Liu', '2023-05-14 22:23:02', 1, 1, 85);
+INSERT INTO `score_details` VALUES (4, 'Teacher Liu', '2023-05-14 22:22:58', 'Teacher Liu', '2023-05-14 22:23:03', 2, 7, 89);
+
+-- ----------------------------
+-- Table structure for score_student
+-- ----------------------------
+DROP TABLE IF EXISTS `score_student`;
+CREATE TABLE `score_student`  (
+          `id` bigint(20) NOT NULL AUTO_INCREMENT ,
+          `create_user_name` varchar(10) NULL DEFAULT NULL ,
+          `create_time` datetime(0) NULL DEFAULT NULL ,
+          `update_user_name` varchar(10)  NULL DEFAULT NULL ,
+          `update_time` datetime(0) NULL DEFAULT NULL,
+          `stu_no` varchar(20)  NULL DEFAULT NULL ,
+          `stu_name` varchar(10)  NULL DEFAULT NULL ,
+          `stu_phone` varchar(11)  NULL DEFAULT NULL ,
+          `stu_class` varchar(10)  NULL DEFAULT NULL ,
+          `stu_status` int(1) NULL DEFAULT NULL COMMENT 'student status（1：available；2：non-available）',
+          `stu_desc` varchar(100) NULL DEFAULT NULL ,
+          PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB ;
+
+-- ----------------------------
+-- Records of score_student
+-- ----------------------------
+INSERT INTO `score_student` VALUES (1, 'Teacher Liu', '2023-05-14 20:48:07', NULL, NULL, 'stu_083163148', 'Feng Li', '18011111111', 'Grade three', 1, 'Good student');
+INSERT INTO `score_student` VALUES (2, 'Teacher Liu', '2023-05-14 20:48:25', NULL, NULL, 'stu_331821521', 'Xun zhu', '18012520000', 'Grade five', 1, 'Excellent officer');
+INSERT INTO `score_student` VALUES (3, 'Teacher Liu', '2023-05-14 20:48:51', 'Teacher Liu', '2023-05-14 20:49:00', 'stu_133745336', 'Yan Yan', '18023222222', 'Grade four', 2, 'Fired');
+
+-- ----------------------------
+-- Table structure for score_subject
+-- ----------------------------
+DROP TABLE IF EXISTS `score_subject`;
+CREATE TABLE `score_subject`  (
+                  `id` bigint(20) NOT NULL AUTO_INCREMENT ,
+                  `create_user_name` varchar(10)  NULL DEFAULT NULL ,
+                  `create_time` datetime(0) NULL DEFAULT NULL ,
+                  `update_user_name` varchar(10)  NULL DEFAULT NULL ,
+                  `update_time` datetime(0) NULL DEFAULT NULL ,
+                  `subject_no` varchar(30)  NULL DEFAULT NULL ,
+                  `subject_name` varchar(20)  NULL DEFAULT NULL ,
+                  `subject_status` int(1) NULL DEFAULT NULL COMMENT 'subject status（1：available；2：non-available）',
+                  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB ;
+
+-- ----------------------------
+-- Records of score_subject
+-- ----------------------------
+INSERT INTO `score_subject` VALUES (1, 'Teacher Liu', '2023-05-14 19:46:54', NULL, NULL, '878830', 'Literature', 1);
+INSERT INTO `score_subject` VALUES (2, 'Teacher Liu', '2023-05-14 19:46:59', NULL, NULL, '477638', 'Math', 1);
+INSERT INTO `score_subject` VALUES (3, 'Teacher Liu', '2023-05-14 19:49:46', NULL, NULL, '442258', 'English', 1);
+INSERT INTO `score_subject` VALUES (4, 'Teacher Liu', '2023-05-14 19:49:50', 'Teacher Liu', '2023-05-14 19:59:29', '671320', 'Chemical', 1);
+INSERT INTO `score_subject` VALUES (5, 'Teacher Liu', '2023-05-14 19:49:54', NULL, NULL, '055783', 'Physics', 1);
+INSERT INTO `score_subject` VALUES (6, 'Teacher Liu', '2023-05-14 19:52:01', 'Teacher Liu', '2023-05-14 19:59:28', '112400', 'Geography', 1);
+INSERT INTO `score_subject` VALUES (7, 'Teacher Liu', '2023-05-14 19:52:09', 'Teacher Liu', '2023-05-14 19:59:26', '332436', 'Biological', 1);
+INSERT INTO `score_subject` VALUES (8, 'Teacher Liu', '2023-05-14 19:52:14', 'Teacher Liu', '2023-05-14 19:59:24', '067133', 'Physical Education', 1);
+INSERT INTO `score_subject` VALUES (9, 'Teacher Liu', '2023-05-14 19:52:19', 'Teacher Liu', '2023-05-14 19:59:23', '485055', 'Music', 1);
+INSERT INTO `score_subject` VALUES (10, 'Teacher Liu', '2023-05-14 19:52:22', 'Teacher Liu', '2023-05-14 19:59:21', '055444', 'History', 1);
+INSERT INTO `score_subject` VALUES (11, 'Teacher Liu', '2023-05-14 19:52:28', 'Teacher Liu', '2023-05-14 19:59:19', '281511', 'Nature', 2);
+
+-- ----------------------------
+-- Table structure for score_teacher
+-- ----------------------------
+DROP TABLE IF EXISTS `score_teacher`;
+CREATE TABLE `score_teacher`  (
+                      `id` bigint(20) NOT NULL AUTO_INCREMENT ,
+                      `create_user_name` varchar(10)  NULL DEFAULT NULL ,
+                      `create_time` datetime(0) NULL DEFAULT NULL ,
+                      `update_user_name` varchar(10)  NULL DEFAULT NULL ,
+                      `update_time` datetime(0) NULL DEFAULT NULL ,
+                      `tea_no` varchar(20)  NULL DEFAULT NULL ,
+                      `tea_name` varchar(10)  NULL DEFAULT NULL ,
+                      `tea_phone` varchar(11)  NULL DEFAULT NULL,
+                      `tea_status` int(1) NULL DEFAULT NULL  COMMENT 'teacher status（1：available；2：non-available）',
+                      `tea_desc` varchar(100)  NULL DEFAULT NULL ,
+                      PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB ;
+
+-- ----------------------------
+-- Records of score_teacher
+-- ----------------------------
+INSERT INTO `score_teacher` VALUES (1, 'Teacher Liu', '2023-05-14 17:59:34', 'Teacher Liu', '2023-05-14 19:56:37', 'tea_428064277', 'San Zhang', '18052625352', 1, 'Good teacher');
+INSERT INTO `score_teacher` VALUES (3, 'Teacher Liu', '2023-05-14 19:56:54', 'Teacher Liu', '2023-05-14 19:58:33', 'tea_273520512', 'Si Li', '18052000000', 1, 'Excellent teacher');
+INSERT INTO `score_teacher` VALUES (4, 'Teacher Liu', '2023-05-14 19:57:05', 'Teacher Liu', '2023-05-14 19:58:35', 'tea_244684283', 'Wu Wang', '18011120000', 1, 'Perfect teacher');
+INSERT INTO `score_teacher` VALUES (5, 'Teacher Liu', '2023-05-14 19:57:24', 'Teacher Liu', '2023-05-14 19:58:37', 'tea_715171650', 'Liu Zhao', '18012302012', 1, 'Nice teacher');

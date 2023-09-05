@@ -45,4 +45,19 @@ public class SysRole {
     @Column(name = "remark", length = 500)
     private String remark;
 
+    @Override
+    public String toString() {
+        return "SysRole{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                ", roleKey='" + roleKey + '\'' +
+                ", roleSort=" + roleSort +
+                ", status='" + status + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createTime=" + createTime +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateTime=" + updateTime +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

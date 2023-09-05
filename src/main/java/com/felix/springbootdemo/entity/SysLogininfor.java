@@ -42,4 +42,18 @@ public class SysLogininfor {
     @Column(name = "login_time")
     private Instant loginTime;
 
+    @Override
+    public String toString() {
+        return "SysLogininfor{" +
+                "id=" + id +
+                ", loginName='" + loginName + '\'' +
+                ", ipaddr='" + ipaddr + '\'' +
+                ", loginLocation='" + loginLocation + '\'' +
+                ", browser='" + browser + '\'' +
+                ", os='" + os + '\'' +
+                ", status='" + status + '\'' +
+                ", msg='" + msg + '\'' +
+                ", loginTime=" + loginTime +
+                '}';
+    }
 }

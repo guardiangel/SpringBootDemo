@@ -54,4 +54,22 @@ public class SysDictDatum {
     @Column(name = "remark", length = 500)
     private String remark;
 
+    @Override
+    public String toString() {
+        return "SysDictDatum{" +
+                "id=" + id +
+                ", dictSort=" + dictSort +
+                ", dictLabel='" + dictLabel + '\'' +
+                ", dictValue='" + dictValue + '\'' +
+                ", dictType='" + dictType + '\'' +
+                ", cssClass='" + cssClass + '\'' +
+                ", isDefault='" + isDefault + '\'' +
+                ", status='" + status + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createTime=" + createTime +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateTime=" + updateTime +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

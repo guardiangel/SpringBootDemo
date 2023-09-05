@@ -45,4 +45,19 @@ public class SysConfig {
     @Column(name = "remark", length = 500)
     private String remark;
 
+    @Override
+    public String toString() {
+        return "SysConfig{" +
+                "id=" + id +
+                ", configName='" + configName + '\'' +
+                ", configKey='" + configKey + '\'' +
+                ", configValue='" + configValue + '\'' +
+                ", configType='" + configType + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createTime=" + createTime +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateTime=" + updateTime +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

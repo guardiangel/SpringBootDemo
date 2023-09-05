@@ -51,4 +51,21 @@ public class SysDept {
     @Column(name = "update_time")
     private Instant updateTime;
 
+    @Override
+    public String toString() {
+        return "SysDept{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", deptName='" + deptName + '\'' +
+                ", orderNum=" + orderNum +
+                ", leader='" + leader + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", status='" + status + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createTime=" + createTime +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

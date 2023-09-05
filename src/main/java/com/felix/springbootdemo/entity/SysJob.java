@@ -44,4 +44,19 @@ public class SysJob {
     @Column(name = "remark", length = 500)
     private String remark;
 
+    @Override
+    public String toString() {
+        return "SysJob{" +
+                "id=" + id +
+                ", methodName='" + methodName + '\'' +
+                ", params='" + params + '\'' +
+                ", cronExpression='" + cronExpression + '\'' +
+                ", status='" + status + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createTime=" + createTime +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateTime=" + updateTime +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

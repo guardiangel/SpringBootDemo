@@ -45,4 +45,19 @@ public class SysPost {
     @Column(name = "remark", length = 500)
     private String remark;
 
+    @Override
+    public String toString() {
+        return "SysPost{" +
+                "id=" + id +
+                ", postCode='" + postCode + '\'' +
+                ", postName='" + postName + '\'' +
+                ", postSort=" + postSort +
+                ", status='" + status + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createTime=" + createTime +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateTime=" + updateTime +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

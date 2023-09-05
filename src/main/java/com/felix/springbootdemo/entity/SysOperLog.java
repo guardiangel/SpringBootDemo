@@ -57,4 +57,23 @@ public class SysOperLog {
     @Column(name = "oper_time")
     private Instant operTime;
 
+    @Override
+    public String toString() {
+        return "SysOperLog{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", action='" + action + '\'' +
+                ", method='" + method + '\'' +
+                ", channel='" + channel + '\'' +
+                ", operName='" + operName + '\'' +
+                ", deptName='" + deptName + '\'' +
+                ", operUrl='" + operUrl + '\'' +
+                ", operIp='" + operIp + '\'' +
+                ", operLocation='" + operLocation + '\'' +
+                ", operParam='" + operParam + '\'' +
+                ", status='" + status + '\'' +
+                ", errorMsg='" + errorMsg + '\'' +
+                ", operTime=" + operTime +
+                '}';
+    }
 }

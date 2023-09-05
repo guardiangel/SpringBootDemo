@@ -45,4 +45,19 @@ public class SysNotice {
     @Column(name = "remark")
     private String remark;
 
+    @Override
+    public String toString() {
+        return "SysNotice{" +
+                "id=" + id +
+                ", noticeTitle='" + noticeTitle + '\'' +
+                ", noticeType='" + noticeType + '\'' +
+                ", noticeContent='" + noticeContent + '\'' +
+                ", status='" + status + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createTime=" + createTime +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateTime=" + updateTime +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }
