@@ -28,6 +28,7 @@
         <devToolVersion>3.1.3</devToolVersion>
         <esapiVersion>2.5.2.0</esapiVersion>
         <encoderesapiVersion>1.2.3</encoderesapiVersion>
+        <hikariVersion>5.0.1</hikariVersion>
     </properties>
     <dependencies>
 
@@ -105,6 +106,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>${druidVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikariVersion}</version>
         </dependency>
 
         <!--Starter for aspect-oriented programming with Spring AOP and AspectJ-->

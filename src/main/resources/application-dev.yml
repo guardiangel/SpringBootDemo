@@ -23,12 +23,38 @@ server:
     decode-slash: false
 
 spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/accessmanagement?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
+#    type: com.alibaba.druid.pool.DruidDataSource
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-timeout: 50000
+      login-timeout: 300000
+      max-lifetime: 900000
+      maximum-pool-size: 10
+      minimum-idle: 10
+      pool-name: ConnPool
+      connection-test-query: select 1 from dual
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: true
+
   data:
     redis:
       host: 127.0.0.1
@@ -40,8 +66,6 @@ spring:
           max-idle: 30
           min-idle: 10
           max-wait: -1 #Connection pool maximum waiting time -1 no limit
-  jpa:
-    show-sql: true
 
 db:
   hostIP: 127.0.0.1
@@ -66,3 +90,9 @@ socketio:
   upgradeTimeout: 1000000
   pingTimeout: 6000000
   pingInterval: 25000
+
+##We should use logging level-related properties only in development mode, and turn off in production.
+logging:
+  level:
+    com.zaxxer.hikari.HikariConfig: debug
+    com.zaxxer.hikari: trace
