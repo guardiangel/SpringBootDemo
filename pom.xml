@@ -29,6 +29,8 @@
         <esapiVersion>2.5.2.0</esapiVersion>
         <encoderesapiVersion>1.2.3</encoderesapiVersion>
         <hikariVersion>5.0.1</hikariVersion>
+        <p6spyVersion>3.9.1</p6spyVersion>
+        <p6spySpringbootVersion>1.9.0</p6spySpringbootVersion>
     </properties>
     <dependencies>
 
@@ -45,6 +47,18 @@
             <version>${encoderesapiVersion}</version>
         </dependency>
 
+        <!--log native sql-->
+       <!-- <dependency>
+            <groupId>com.github.gavlyukovskiy</groupId>
+            <artifactId>p6spy-spring-boot-starter</artifactId>
+            <version>${p6spySpringbootVersion}</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>${p6spyVersion}</version>
+        </dependency>
 
 
         <dependency>

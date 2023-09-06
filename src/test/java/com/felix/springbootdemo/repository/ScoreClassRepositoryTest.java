@@ -17,7 +17,7 @@ class ScoreClassRepositoryTest {
     @Test
     void selectMySqlPage() {
         List<ScoreClass> scoreClassList
-                = scoreClassRepository.selectMySqlPage(null);//Grade one
+                = scoreClassRepository.selectMySqlPage("Grade one");//Grade one
         scoreClassList.forEach(scoreClass -> System.err.println(scoreClass));
     }
 }

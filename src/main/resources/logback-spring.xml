@@ -106,7 +106,6 @@
 			<pattern>${FORMAT}</pattern>
 		</encoder>
 	</appender>
-
 	<!-- root级别 -->
 	<root>
 		<!-- Only logs of this level and above will be output to the specified channel -->
