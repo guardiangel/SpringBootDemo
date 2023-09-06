@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository(value = "scoreClassRepository")
 public interface ScoreClassRepository extends CrudRepository<ScoreClass, Long> {
-    @Query(value = QueryConstants.SELECTMYSQLPAGE,nativeQuery = false)
+    @Query(value = QueryConstants.SELECTMYSQLPAGE_SCORE_CLASS,nativeQuery = false)
     List<ScoreClass> selectMySqlPage(@Param("className")String className);
 }

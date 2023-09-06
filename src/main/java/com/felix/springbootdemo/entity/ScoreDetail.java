@@ -36,6 +36,10 @@ public class ScoreDetail {
 
     @Column(name = "score_value")
     private Integer scoreValue;
+    @Transient
+    private String subjectName;
+    @Transient
+    private String stuName;
 
     @Override
     public String toString() {
@@ -48,6 +52,8 @@ public class ScoreDetail {
                 ", stuId=" + stuId +
                 ", subjectId=" + subjectId +
                 ", scoreValue=" + scoreValue +
+                ", subjectName=" + subjectName +
+                ", stuName=" + stuName +
                 '}';
     }
 }
