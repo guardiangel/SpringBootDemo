@@ -31,8 +31,17 @@
         <hikariVersion>5.0.1</hikariVersion>
         <p6spyVersion>3.9.1</p6spyVersion>
         <p6spySpringbootVersion>1.9.0</p6spySpringbootVersion>
+        <gsonVersion>2.10.1</gsonVersion>
     </properties>
     <dependencies>
+
+        <!--Parse object to json format-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gsonVersion}</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.owasp.esapi/esapi -->
         <dependency>
@@ -48,12 +57,6 @@
         </dependency>
 
         <!--log native sql-->
-       <!-- <dependency>
-            <groupId>com.github.gavlyukovskiy</groupId>
-            <artifactId>p6spy-spring-boot-starter</artifactId>
-            <version>${p6spySpringbootVersion}</version>
-        </dependency>-->
-
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
