@@ -31,7 +31,7 @@ spring:
     open-in-view: false
   datasource:
 #    url: jdbc:mysql://127.0.0.1:3306/accessmanagement?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true
-    url: jdbc:p6spy:mysql://127.0.0.1:3306/accessmanagement?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true
+    url: jdbc:p6spy:mysql://127.0.0.1:3306/accessmanagement?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true&useLegacyDatetimeCode=false&serverTimezone=America/New_York
     username: root
     password: 123456
 #    driver-class-name: com.mysql.cj.jdbc.Driver
