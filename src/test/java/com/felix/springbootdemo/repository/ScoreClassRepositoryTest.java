@@ -7,13 +7,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class ScoreClassRepositoryTest {
-
     @Resource(name = "scoreClassRepository")
     private ScoreClassRepository scoreClassRepository;
+
     @Test
     void selectMySqlPage() {
         List<ScoreClass> scoreClassList

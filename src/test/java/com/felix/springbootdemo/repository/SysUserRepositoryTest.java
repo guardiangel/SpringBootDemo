@@ -9,13 +9,13 @@ import java.util.List;
 
 @SpringBootTest
 class SysUserRepositoryTest {
-
     @Resource(name = "sysUserRepository")
     private SysUserRepository sysUserRepository;
 
     @Test
     void getOnlineUserIdList() {
-        List<SysUser> sysUserList = sysUserRepository.getOnlineUserIdList();
+        List<SysUser> sysUserList
+                = sysUserRepository.getOnlineUserIdList();
         sysUserList.forEach(sysUser -> {
             System.err.println(sysUser);
         });
