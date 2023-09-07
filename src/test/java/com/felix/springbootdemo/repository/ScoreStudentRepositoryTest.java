@@ -4,10 +4,10 @@ import com.felix.springbootdemo.entity.ScoreStudent;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ScoreStudentRepositoryTest {
@@ -17,8 +17,9 @@ class ScoreStudentRepositoryTest {
 
     @Test
     void selectMySqlPage() {
+        Pageable pageable = PageRequest.of(0, Integer.MAX_VALUE);
         List<ScoreStudent> scoreStudentList
-                = scoreStudentRepository.selectMySqlPage("Yan Yan","18023222222",null);
+                = scoreStudentRepository.selectMySqlPage("Yan Yan","18023222222",null,pageable);
         scoreStudentList.forEach(scoreStudent -> {
             System.err.println(scoreStudent+" ");
         });

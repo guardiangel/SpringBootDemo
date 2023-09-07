@@ -4,6 +4,8 @@ import com.felix.springbootdemo.entity.SysUser;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -14,8 +16,9 @@ class SysUserRepositoryTest {
 
     @Test
     void getOnlineUserIdList() {
+        Pageable pageable = PageRequest.of(0, Integer.MAX_VALUE);
         List<SysUser> sysUserList
-                = sysUserRepository.getOnlineUserIdList();
+                = sysUserRepository.getOnlineUserIdList(pageable);
         sysUserList.forEach(sysUser -> {
             System.err.println(sysUser);
         });

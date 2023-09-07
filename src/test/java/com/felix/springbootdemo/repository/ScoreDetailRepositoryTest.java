@@ -4,6 +4,8 @@ import com.felix.springbootdemo.entity.ScoreDetail;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -14,8 +16,9 @@ class ScoreDetailRepositoryTest {
 
     @Test
     void selectMySqlPage() {
+        Pageable pageable = PageRequest.of(0, Integer.MAX_VALUE);
         List<Object[]> scoreDetails
-                = scoreDetailRepository.selectMySqlPage("Literature", null);
+                = scoreDetailRepository.selectMySqlPage("Literature", null,pageable);
 
         scoreDetails.forEach(scoreDetail -> {
             ((ScoreDetail) scoreDetail[0]).setSubjectName(scoreDetail[1].toString());
