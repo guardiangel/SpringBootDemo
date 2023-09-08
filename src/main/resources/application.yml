@@ -1,5 +1,6 @@
 server:
-  shutdown: IMMEDIATE
+  shutdown: graceful
+#  shutdown: IMMEDIATE
 spring:
   profiles:
     active: dev

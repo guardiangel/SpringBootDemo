@@ -9,7 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import java.time.Duration;
 
 public class SpringBootDemoRunLister implements SpringApplicationRunListener {
-    private final Logger log = ESAPI.getLogger("SpringBootDemoRunLister");
+    private final Logger log = ESAPI.getLogger(SpringBootDemoRunLister.class);
 
     @Override
     public void starting(ConfigurableBootstrapContext bootstrapContext) {

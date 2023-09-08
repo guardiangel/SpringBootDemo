@@ -43,7 +43,7 @@
         </dependency>
 
 
-        <!-- https://mvnrepository.com/artifact/org.owasp.esapi/esapi -->
+        <!-- esapi for security -->
         <dependency>
             <groupId>org.owasp.esapi</groupId>
             <artifactId>esapi</artifactId>
