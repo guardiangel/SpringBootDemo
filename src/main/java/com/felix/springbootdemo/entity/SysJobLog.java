@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -38,6 +38,6 @@ public class SysJobLog {
     private String exceptionInfo;
 
     @Column(name = "create_time")
-    private Instant createTime;
+    private LocalDateTime createTime;
 
 }

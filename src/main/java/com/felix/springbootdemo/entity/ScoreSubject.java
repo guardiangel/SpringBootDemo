@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -20,13 +20,13 @@ public class ScoreSubject {
     private String createUserName;
 
     @Column(name = "create_time")
-    private Instant createTime;
+    private LocalDateTime createTime;
 
     @Column(name = "update_user_name", length = 50)
     private String updateUserName;
 
     @Column(name = "update_time")
-    private Instant updateTime;
+    private LocalDateTime updateTime;
 
     @Column(name = "subject_no", length = 50)
     private String subjectNo;

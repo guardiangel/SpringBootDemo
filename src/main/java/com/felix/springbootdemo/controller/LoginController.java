@@ -34,6 +34,9 @@ public class LoginController {
     @Resource(name = "jsonResult")
     private JSONResult jsonResult;
 
+    @Resource(name = "typeAdapterRegistration")
+    private Gson gson;
+
     @Resource(name = "sysUserService")
     private SysUserService sysUserService;
 
@@ -100,7 +103,8 @@ public class LoginController {
 
         //Save user info to Redis
         String token = LoginUtils.getLoginToken();
-        redisTemplate.opsForValue().set(token, new Gson().toJson(currentUser),
+
+        redisTemplate.opsForValue().set(token, gson.toJson(currentUser, SysUser.class),
                 CommonConstants.LOGIN_TIME_OUT, TimeUnit.MINUTES);
 
         //If forcelly kick out user, delete the user in redis

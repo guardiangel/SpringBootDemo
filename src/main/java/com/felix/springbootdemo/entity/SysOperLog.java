@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -55,7 +55,7 @@ public class SysOperLog {
     private String errorMsg;
 
     @Column(name = "oper_time")
-    private Instant operTime;
+    private LocalDateTime operTime;
 
     @Override
     public String toString() {

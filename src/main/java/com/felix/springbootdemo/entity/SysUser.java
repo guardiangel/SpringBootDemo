@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -56,19 +56,19 @@ public class SysUser {
     private String loginIp;
 
     @Column(name = "login_date")
-    private Instant loginDate;
+    private LocalDateTime loginDate;
 
     @Column(name = "create_by", length = 64)
     private String createBy;
 
     @Column(name = "create_time")
-    private Instant createTime;
+    private LocalDateTime createTime;
 
     @Column(name = "update_by", length = 64)
     private String updateBy;
 
     @Column(name = "update_time")
-    private Instant updateTime;
+    private LocalDateTime updateTime;
 
     @Column(name = "remark", length = 500)
     private String remark;

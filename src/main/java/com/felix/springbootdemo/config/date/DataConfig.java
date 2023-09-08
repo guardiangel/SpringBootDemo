@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- *Global time configuration class
+ *Global time configuration class, used for displayint in front end.
  */
 @Configuration
 public class DataConfig {

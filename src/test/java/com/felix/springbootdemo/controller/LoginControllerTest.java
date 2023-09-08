@@ -58,7 +58,7 @@ class LoginControllerTest {
             SysUser user = new SysUser();
             user.setLoginName("admin");
             user.setPassword("123456");
-            user.setImageCode(null);
+            user.setImageCode("9245");
             user.setUuid("1111");
             str = objectMapper.writeValueAsString(user);
         } catch (JsonProcessingException e) {

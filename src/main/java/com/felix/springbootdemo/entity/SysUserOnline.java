@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -40,10 +40,10 @@ public class SysUserOnline {
     private String status;
 
     @Column(name = "start_timestsamp")
-    private Instant startTimestsamp;
+    private LocalDateTime startTimestsamp;
 
     @Column(name = "last_access_time")
-    private Instant lastAccessTime;
+    private LocalDateTime lastAccessTime;
 
     @Column(name = "expire_time")
     private Integer expireTime;
