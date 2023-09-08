@@ -1,7 +1,8 @@
 package com.felix.springbootdemo.service;
 
-import com.felix.springbootdemo.ErrorCodeConstants;
+import com.felix.springbootdemo.constants.ErrorCodeEnums;
 import com.felix.springbootdemo.entity.SysUser;
+import com.felix.springbootdemo.exceptions.CustomException;
 import com.felix.springbootdemo.repository.SysUserRepository;
 import com.felix.springbootdemo.utils.JSONResult;
 import com.google.gson.Gson;
@@ -49,7 +50,7 @@ public class SysUserService {
         if (StringUtils.hasLength(token)) {
             Object userInfo = redisTemplate.opsForValue().get(token);
             if (userInfo == null) {
-                throw new RuntimeException(ErrorCodeConstants.ERROR_CODE_1002.getMessage());
+                throw new CustomException(ErrorCodeEnums.ERROR_CODE_1002);
             }
             Gson gson = new Gson();
             SysUser sysUser = gson.fromJson(userInfo.toString(), SysUser.class);
@@ -59,7 +60,7 @@ public class SysUserService {
             JSONResult<Map<String, String>> jsonResult = new JSONResult<>();
             return jsonResult.success(map);
         } else {
-            throw new RuntimeException(ErrorCodeConstants.ERROR_CODE_1008.getMessage());
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1008);
         }
     }
 

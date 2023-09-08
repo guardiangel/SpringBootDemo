@@ -1,6 +1,6 @@
-package com.felix.springbootdemo;
+package com.felix.springbootdemo.constants;
 
-public enum ErrorCodeConstants {
+public enum ErrorCodeEnums {
     SYSTEM_SUCCESS("0000", "Operate successfully！"),
 
     ERROR_CODE_1001("1001", "Operate failed, try later."),
@@ -25,7 +25,7 @@ public enum ErrorCodeConstants {
     //Error message
     private String message;
 
-    ErrorCodeConstants(String code, String message){
+    ErrorCodeEnums(String code, String message){
         this.code = code;
         this.message = message;
     }
