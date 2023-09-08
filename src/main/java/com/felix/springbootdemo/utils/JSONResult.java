@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Transient;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 
+@Component(value = "jsonResult")
 public class JSONResult<T> implements Serializable {
     public void setSuccess(boolean success) {
         this.success = success;
@@ -112,19 +114,14 @@ public class JSONResult<T> implements Serializable {
         return this.data;
     }
 
-    public JSONResult<T> success() {
-        return new JSONResult<>();
-    }
-
-
     public JSONResult<T> success(boolean showMessage) {
         JSONResult instance = new JSONResult<>();
         instance.setShowMessage(showMessage);
         return instance;
     }
 
-    public JSONResult<T> success(Object obj) {
-        JSONResult instance = new JSONResult<>();
+    public JSONResult<T> success(T obj) {
+        JSONResult<T> instance = new JSONResult<>();
         instance.setData(obj);
         return instance;
     }
@@ -153,7 +150,7 @@ public class JSONResult<T> implements Serializable {
     }
 
     public JSONResult<T> error() {
-        JSONResult instance = new JSONResult<>();
+        JSONResult<T> instance = new JSONResult<>();
         instance.setCode("9999");
         instance.setSuccess(false);
         instance.setMessage("System exception, please try again later.");
