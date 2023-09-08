@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysRole {
     @Id
     @Column(name = "role_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "role_name", nullable = false, length = 30)
     private String roleName;

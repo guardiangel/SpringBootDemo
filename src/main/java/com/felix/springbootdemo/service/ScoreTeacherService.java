@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service(value = "scoreTeacherService")
 public class ScoreTeacherService {
 
     private final Logger log = ESAPI.getLogger(ScoreTeacherService.class);

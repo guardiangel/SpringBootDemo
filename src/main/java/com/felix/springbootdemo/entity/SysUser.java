@@ -14,7 +14,7 @@ public class SysUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "dept_id")
     private Integer deptId;
@@ -73,6 +73,11 @@ public class SysUser {
     @Column(name = "remark", length = 500)
     private String remark;
 
+    @Transient
+    private String uuid;
+    @Transient
+    private String imageCode;
+
     @Override
     public String toString() {
         return "SysUser{" +
@@ -96,6 +101,8 @@ public class SysUser {
                 ", updateBy='" + updateBy + '\'' +
                 ", updateTime=" + updateTime +
                 ", remark='" + remark + '\'' +
+                ", uuid='" + uuid + '\'' +
+                ", imageCode='" + imageCode + '\'' +
                 '}';
     }
 }

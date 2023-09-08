@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysConfig {
     @Id
     @Column(name = "config_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "config_name", length = 100)
     private String configName;

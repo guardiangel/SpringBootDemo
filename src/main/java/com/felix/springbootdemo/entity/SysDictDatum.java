@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysDictDatum {
     @Id
     @Column(name = "dict_code", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "dict_sort")
     private Integer dictSort;

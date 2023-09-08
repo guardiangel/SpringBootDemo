@@ -23,4 +23,13 @@ class SysUserRepositoryTest {
             System.err.println(sysUser);
         });
     }
+    @Test
+    void getUserByLoginName() {
+        List<SysUser> sysUserList
+                = sysUserRepository.getUserByLoginName("admin",null);
+        sysUserList.forEach(sysUser -> {
+            System.err.println(sysUser);
+        });
+    }
+
 }

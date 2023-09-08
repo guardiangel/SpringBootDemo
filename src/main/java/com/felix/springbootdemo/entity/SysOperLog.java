@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysOperLog {
     @Id
     @Column(name = "oper_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "title", length = 50)
     private String title;

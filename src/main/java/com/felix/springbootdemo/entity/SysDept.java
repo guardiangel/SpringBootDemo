@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysDept {
     @Id
     @Column(name = "dept_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "parent_id")
     private Integer parentId;

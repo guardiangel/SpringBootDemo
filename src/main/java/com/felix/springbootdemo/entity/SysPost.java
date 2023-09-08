@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysPost {
     @Id
     @Column(name = "post_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "post_code", nullable = false, length = 64)
     private String postCode;

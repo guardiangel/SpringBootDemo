@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service(value = "sysUserService")
 public class SysUserService {
 
     private final Logger log = ESAPI.getLogger(SysUserService.class);
@@ -64,4 +64,7 @@ public class SysUserService {
         }
     }
 
+    public List<SysUser> getUserByLoginName(String loginName) {
+        return sysUserRepository.getUserByLoginName(loginName,null);
+    }
 }

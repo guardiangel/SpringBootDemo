@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysNotice {
     @Id
     @Column(name = "notice_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "notice_title", nullable = false, length = 50)
     private String noticeTitle;

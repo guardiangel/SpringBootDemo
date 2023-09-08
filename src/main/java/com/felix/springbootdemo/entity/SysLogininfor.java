@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysLogininfor {
     @Id
     @Column(name = "info_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "login_name", length = 50)
     private String loginName;

@@ -15,4 +15,7 @@ public interface SysUserRepository extends JpaRepository<SysUser, Integer> {
     @Query(value = QueryConstants.GET_ONLINEUSERIDLIST_SQL,nativeQuery = false)
     List<SysUser> getOnlineUserIdList(Pageable pageable);
 
+    @Query(value = QueryConstants.GET_USER_BY_LOGINNAME,nativeQuery = false)
+    List<SysUser> getUserByLoginName(String loginName, Pageable pageable);
+
 }

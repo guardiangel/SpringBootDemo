@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysMenu {
     @Id
     @Column(name = "menu_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "menu_name", nullable = false, length = 50)
     private String menuName;

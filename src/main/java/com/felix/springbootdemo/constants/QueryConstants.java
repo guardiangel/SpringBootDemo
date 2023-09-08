@@ -1,8 +1,10 @@
 package com.felix.springbootdemo.constants;
 
 public final class QueryConstants {
+
     private QueryConstants() {
     }
+
 
     public static final String GET_ONLINEUSERIDLIST_SQL =
             "SELECT s FROM SysUser s";
@@ -33,4 +35,6 @@ public final class QueryConstants {
                     " AND  (s.teaPhone LIKE %:teaPhone% OR :teaPhone IS NULL) " +
                     " AND  (s.teaDesc LIKE %:teaDesc% OR :teaDesc IS NULL) )" +
                     " ORDER BY s.createTime DESC";
+    public static final String GET_USER_BY_LOGINNAME = "SELECT s from SysUser s " +
+            " WHERE s.loginName=:loginName";
 }

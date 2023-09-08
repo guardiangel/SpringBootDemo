@@ -13,7 +13,7 @@ import java.time.Instant;
 public class SysJobLog {
     @Id
     @Column(name = "job_log_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "job_name", nullable = false, length = 64)
     private String jobName;

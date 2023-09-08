@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service(value = "scoreDetailService")
 public class ScoreDetailService {
     private final Logger log = ESAPI.getLogger(ScoreDetailService.class);
     @Resource(name = "scoreDetailRepository")

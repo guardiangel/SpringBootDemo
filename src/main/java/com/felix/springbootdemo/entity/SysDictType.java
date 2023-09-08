@@ -16,7 +16,7 @@ import java.time.Instant;
 public class SysDictType {
     @Id
     @Column(name = "dict_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "dict_name", length = 100)
     private String dictName;

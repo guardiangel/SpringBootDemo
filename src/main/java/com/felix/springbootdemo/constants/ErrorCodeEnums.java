@@ -3,6 +3,7 @@ package com.felix.springbootdemo.constants;
 public enum ErrorCodeEnums {
     SYSTEM_SUCCESS("0000", "Operate successfully！"),
 
+    ERROR_CODE_1000("1000", "The input object is null"),
     ERROR_CODE_1001("1001", "Operate failed, try later."),
     ERROR_CODE_1002("1002", "Invalid auth status, please login again."),
     ERROR_CODE_1003("1003", "Account can't be null！"),

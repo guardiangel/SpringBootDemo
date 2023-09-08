@@ -31,8 +31,15 @@
         <p6spySpringbootVersion>1.9.0</p6spySpringbootVersion>
         <gsonVersion>2.10.1</gsonVersion>
         <springDocVersion>2.0.0</springDocVersion>
+        <hutoolVersion>5.8.21</hutoolVersion>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutoolVersion}</version>
+        </dependency>
 
         <!--Parse object to json format-->
         <dependency>

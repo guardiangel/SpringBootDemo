@@ -1,15 +1,27 @@
 package com.felix.springbootdemo.controller;
 
+import cn.hutool.crypto.SecureUtil;
 import com.felix.springbootdemo.constants.CommonConstants;
+import com.felix.springbootdemo.constants.ErrorCodeEnums;
+import com.felix.springbootdemo.entity.SysUser;
+import com.felix.springbootdemo.exceptions.CustomException;
+import com.felix.springbootdemo.service.SysUserService;
 import com.felix.springbootdemo.utils.JSONResult;
+import com.felix.springbootdemo.utils.LoginUtils;
+import com.felix.springbootdemo.vo.UserVo;
+import com.google.gson.Gson;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
 import jakarta.annotation.Resource;
 import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.Logger;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @RestController(value = "loginController")
@@ -21,6 +33,9 @@ public class LoginController {
 
     @Resource(name = "jsonResult")
     private JSONResult jsonResult;
+
+    @Resource(name = "sysUserService")
+    private SysUserService sysUserService;
 
     @GetMapping("/getLoginImgCode/{uuid}")
     public JSONResult<String> getLoginImgCode(@PathVariable("uuid") String uuid) {
@@ -37,6 +52,70 @@ public class LoginController {
                 CommonConstants.LOGIN_CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
 
         return jsonResult.success(captcha.toBase64());
+    }
+
+    @PostMapping("/login")
+    public JSONResult login(@RequestBody SysUser sysUser) {
+        if (ObjectUtils.isEmpty(sysUser)) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1000);
+        }
+        if (!StringUtils.hasLength(sysUser.getLoginName())) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1003);
+        }
+        if (!StringUtils.hasLength(sysUser.getPassword())) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1004);
+        }
+         if (!StringUtils.hasLength(sysUser.getUuid())) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1009);
+        }
+        if (!StringUtils.hasLength(sysUser.getImageCode())) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1010);
+        }
+
+        String key = CommonConstants.LOGIN_CAPTCHA_CODE_KEY + sysUser.getUuid();
+        Object imageCodeRedisObj = redisTemplate.opsForValue().get(key);
+        String imageCodeRedis = imageCodeRedisObj == null ? "" : imageCodeRedisObj.toString();
+
+        if (!StringUtils.hasLength(imageCodeRedis)) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1011);
+        }
+        //compare the image code
+        if (!imageCodeRedis.equals(sysUser.getImageCode())) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1012);
+        }
+
+        List<SysUser> existUserList = sysUserService.getUserByLoginName(sysUser.getLoginName());
+        if (CollectionUtils.isEmpty(existUserList)) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1005);
+        }
+        if (existUserList.size() > 1) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1006);
+        }
+
+        SysUser currentUser = existUserList.get(0);
+        if (!currentUser.getPassword()
+                .equalsIgnoreCase(SecureUtil.md5(sysUser.getPassword()))) {
+            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1007);
+        }
+
+        //Save user info to Redis
+        String token = LoginUtils.getLoginToken();
+        redisTemplate.opsForValue().set(token, new Gson().toJson(currentUser),
+                CommonConstants.LOGIN_TIME_OUT, TimeUnit.MINUTES);
+
+        //If forcelly kick out user, delete the user in redis
+        redisTemplate.opsForValue().set(String.valueOf(currentUser.getId()),
+                String.valueOf(currentUser.getId()),
+                CommonConstants.LOGIN_TIME_OUT, TimeUnit.MINUTES);
+
+        //Return token to frontend
+        UserVo userVo = new UserVo();
+        userVo.setToken(token);
+        userVo.setAvatar(currentUser.getAvatar());
+        userVo.setLoginName(currentUser.getLoginName());
+        userVo.setUserName(currentUser.getUserName());
+        userVo.setUserId(currentUser.getId());
+        return jsonResult.success(userVo);
     }
 
     @GetMapping("/logout")
