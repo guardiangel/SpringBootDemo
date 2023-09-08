@@ -12,7 +12,6 @@ import java.util.List;
 
 @Service
 public class ScoreClassService {
-
     private final Logger log = ESAPI.getLogger(ScoreClassService.class);
     @Resource(name = "scoreClassRepository")
     private ScoreClassRepository scoreClassRepository;

@@ -1,6 +1,5 @@
 package com.felix.springbootdemo.entity;
 
-import io.swagger.annotations.ApiModel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +10,6 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "score_class")
-@ApiModel(value = "score_class entity",description = "class table")
 public class ScoreClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

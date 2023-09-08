@@ -22,8 +22,6 @@
         <lombokVersion>1.18.28</lombokVersion>
         <easyCaptchaversion>1.6.2</easyCaptchaversion>
         <mySqlversion>8.1.0</mySqlversion>
-        <druidVersion>1.2.18</druidVersion>
-        <swagger2Version>3.0.0</swagger2Version>
         <nettySocketioVersion>2.0.3</nettySocketioVersion>
         <devToolVersion>3.1.3</devToolVersion>
         <esapiVersion>2.5.2.0</esapiVersion>
@@ -32,6 +30,7 @@
         <p6spyVersion>3.9.1</p6spyVersion>
         <p6spySpringbootVersion>1.9.0</p6spySpringbootVersion>
         <gsonVersion>2.10.1</gsonVersion>
+        <springDocVersion>2.0.0</springDocVersion>
     </properties>
     <dependencies>
 
@@ -119,11 +118,6 @@
         </dependency>
 
         <!--database resource pool management-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>${druidVersion}</version>
-        </dependency>
 
         <dependency>
             <groupId>com.zaxxer</groupId>
@@ -138,10 +132,11 @@
         </dependency>
 
         <!--JSON API documentation for spring based applications-->
+
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger2Version}</version>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springDocVersion}</version>
         </dependency>
 
         <!--Starter for using Redis key-value data store with Spring Data Redis and the Lettuce client-->

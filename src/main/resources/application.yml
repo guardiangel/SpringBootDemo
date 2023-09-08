@@ -9,3 +9,9 @@ spring:
     name: SpringBootDemo
   main:
     allow-bean-definition-overriding: true
+
+springdoc:
+  api-docs:
+    enabled: true
+  packages-to-scan:
+  paths-to-match:

@@ -3,13 +3,10 @@ package com.felix.springbootdemo.utils;
 import java.io.Serializable;
 import java.util.Objects;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Transient;
 import org.springframework.util.StringUtils;
 
 
-@ApiModel("Wrap data class")
 public class JSONResult<T> implements Serializable {
     public void setSuccess(boolean success) {
         this.success = success;
@@ -84,35 +81,30 @@ public class JSONResult<T> implements Serializable {
                 "showMessage=" + isShowMessage() + ", data=" + getData() + ")";
     }
 
-    @ApiModelProperty("Response status（true:success;false:failure;）")
     private boolean success = true;
 
     public boolean isSuccess() {
         return this.success;
     }
 
-    @ApiModelProperty("description")
     private String message = "Operate successfully";
 
     public String getMessage() {
         return this.message;
     }
 
-    @ApiModelProperty("status")
     private String code = "0000";
 
     public String getCode() {
         return this.code;
     }
 
-    @ApiModelProperty("Show prompt message")
     private boolean showMessage = false;
 
     public boolean isShowMessage() {
         return this.showMessage;
     }
 
-    @ApiModelProperty("Responsive data")
     @Transient
     private T data;
 

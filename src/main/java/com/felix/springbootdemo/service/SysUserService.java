@@ -6,6 +6,8 @@ import com.felix.springbootdemo.repository.SysUserRepository;
 import com.felix.springbootdemo.utils.JSONResult;
 import com.google.gson.Gson;
 import jakarta.annotation.Resource;
+import org.owasp.esapi.ESAPI;
+import org.owasp.esapi.Logger;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ import java.util.Map;
 @Service
 public class SysUserService {
 
+    private final Logger log = ESAPI.getLogger(SysUserService.class);
+
     @Resource(name = "redisTemplate")
     private RedisTemplate redisTemplate;
     @Resource(name = "sysUserRepository")
@@ -27,6 +31,11 @@ public class SysUserService {
 
         List<SysUser> sysUserList
                 = sysUserRepository.getOnlineUserIdList( pageable);
+
+        log.info(Logger.EVENT_SUCCESS, "SysUserService.selectMySqlPage() execute "
+                + ",pageable=" + pageable
+                + ",scoreClassList.size()="
+                + (sysUserList == null ? 0 : sysUserList.size()));
 
         return sysUserList;
     }
