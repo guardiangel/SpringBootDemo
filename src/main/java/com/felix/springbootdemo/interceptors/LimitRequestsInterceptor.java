@@ -6,6 +6,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Limit the concurrency from the same ip
  */
+@Component(value = "limitRequestsInterceptor")
 public class LimitRequestsInterceptor implements HandlerInterceptor {
     @Resource(name = "redisTemplate")
     private RedisTemplate<String, Integer> redisTemplate;

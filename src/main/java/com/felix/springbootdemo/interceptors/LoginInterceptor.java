@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.Logger;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Login interceptor
  */
+@Component(value = "loginInterceptor")
 public class LoginInterceptor implements HandlerInterceptor {
 
     private Logger log = ESAPI.getLogger(LoginInterceptor.class);
