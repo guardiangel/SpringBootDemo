@@ -13,5 +13,3 @@ spring:
 springdoc:
   api-docs:
     enabled: true
-  packages-to-scan:
-  paths-to-match:
