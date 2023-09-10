@@ -1,6 +1,6 @@
 # SpringBootDemo
 This is a spring boot demo project
-
+a) BackEnd<br/>
 1. Technology<br/>
     1.1 SpringBoot/ESAPI/JPA/p6spy/HikariCP/Redis/Postman <br/>
     1.2 Take undertow as server instead of tomcat<br/>
@@ -21,3 +21,7 @@ This is a spring boot demo project
     Usage:<br/>
    @Resource(name = "typeAdapterRegistration")<br/>
    private Gson gson;<br/>
+b) FrontEnd<br/>
+1. Init project and install dependencies<br/>
+   yarn create react-app . --template typescript <br/>
+   yarn add @mui/material @mui/icons-material @emotion/react @emotion/styled react-router-dom formic yup @mui/x-data-grid axios <br/>
