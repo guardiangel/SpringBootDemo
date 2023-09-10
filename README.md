@@ -21,7 +21,3 @@ a) BackEnd<br/>
     Usage:<br/>
    @Resource(name = "typeAdapterRegistration")<br/>
    private Gson gson;<br/>
-b) FrontEnd<br/>
-1. Init project and install dependencies<br/>
-   yarn create react-app . --template typescript <br/>
-   yarn add @mui/material @mui/icons-material @emotion/react @emotion/styled react-router-dom formic yup @mui/x-data-grid axios <br/>
