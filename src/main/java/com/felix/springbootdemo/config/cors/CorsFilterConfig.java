@@ -20,7 +20,7 @@ public class CorsFilterConfig {
         //Allow send cookie, get same session when used in cross domain request.
         corsConfiguration.setAllowCredentials(true);
         //Allow all domains
-        //When setAllowCredentials is true, we can use addAllowedOrigin("*")
+        //When setAllowCredentials is true, we can't use addAllowedOrigin("*")
         //corsConfiguration.addAllowedOrigin("*");
         corsConfiguration
                 .setAllowedHeaders(Arrays
