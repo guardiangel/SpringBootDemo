@@ -6,6 +6,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
+
 /**
  * cross domain
  */
@@ -15,10 +17,14 @@ public class CorsFilterConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        //Allow all domains
-        corsConfiguration.addAllowedOrigin("*");
         //Allow send cookie, get same session when used in cross domain request.
         corsConfiguration.setAllowCredentials(true);
+        //Allow all domains
+        //When setAllowCredentials is true, we can use addAllowedOrigin("*")
+        //corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration
+                .setAllowedHeaders(Arrays
+                        .asList("Origin", "Content-Type", "Accept", "responseType", "Authorization"));
         //Allowed request methods
         corsConfiguration.addAllowedMethod("OPTIONS");
         corsConfiguration.addAllowedMethod("HEAD");
@@ -29,6 +35,7 @@ public class CorsFilterConfig {
         corsConfiguration.addAllowedMethod("PATCH");
         //Allow request header
         corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.setAllowedOriginPatterns(Arrays.asList("*"));
 
         //Configure allowed urls, * means all
         UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
