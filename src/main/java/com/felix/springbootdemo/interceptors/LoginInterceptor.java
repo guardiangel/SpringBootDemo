@@ -29,6 +29,9 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Resource(name = "redisTemplate")
     private RedisTemplate redisTemplate;
 
+    @Resource(name = "typeAdapterRegistration")
+    private Gson gson;
+
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
@@ -46,8 +49,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         String userInfo = userInfoObject == null ? "" : userInfoObject.toString();
         if (StringUtils.hasLength(userInfo)) {
             //If there is a userId in the redis
-            SysUser sysUser = new Gson().fromJson(userInfo, SysUser.class);
-            Object userIdObject = redisTemplate.opsForValue().get(sysUser.getId());
+            SysUser sysUser = gson.fromJson(userInfo, SysUser.class);
+            Object userIdObject = redisTemplate.opsForValue().get(String.valueOf(sysUser.getId()));
             String userId = userIdObject == null ? "" : userInfoObject.toString();
             if (StringUtils.hasLength(userId)) {
                 //Set the expired time again
@@ -55,11 +58,11 @@ public class LoginInterceptor implements HandlerInterceptor {
                         .set(token, userInfo, CommonConstants.LOGIN_TIME_OUT, TimeUnit.MINUTES);
                 return true;
             } else {
-                log.error(Logger.EVENT_SUCCESS, "preHandle(): The userId is null.");
+                log.error(Logger.EVENT_SUCCESS, "preHandle(): The userId is null. the token is:" + token);
                 throw new CustomException(ErrorCodeEnums.ERROR_CODE_1002);
             }
         } else {
-            log.error(Logger.EVENT_SUCCESS, "preHandle(): Can't get userInfo from redis.");
+            log.error(Logger.EVENT_SUCCESS, "preHandle(): Can't get userInfo from redis.the token is:" + token);
             throw new CustomException(ErrorCodeEnums.ERROR_CODE_1002);
         }
     }
