@@ -3,11 +3,13 @@ package com.felix.springbootdemo.utils;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.annotation.Transient;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-
+@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 @Component(value = "jsonResult")
 public class JSONResult<T> implements Serializable {
     public void setSuccess(boolean success) {

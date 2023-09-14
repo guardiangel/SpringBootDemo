@@ -10,8 +10,8 @@ a) BackEnd<br/>
     2.3 Adjust dialect, database url, username, password in the application.yml file<br/>
     2.4 Modify the logfile attribute in the spy.properties to the absolute location based on real needs<br/> 
 3. Start the app<br/>
-    2.1 Start Redis<br/>
-    2.2 Run the SpringBootDemoApplication<br/>
+    2.1 <b>Start Redis</b><br/>
+    2.2 <b>Run the SpringBootDemoApplication</b><br/>
 
 4. Todo<br/>
     4.1 Password needs to be encrypted for the real business scenario.<br/>
@@ -21,3 +21,15 @@ a) BackEnd<br/>
     Usage:<br/>
    @Resource(name = "typeAdapterRegistration")<br/>
    private Gson gson;<br/>
+
+6. Use PostMan to test APIs:<br/>
+   6.1 Add token in the request header for each request<br/>
+    The program will validate the token, see the LoginInterceptor for more details<br/>
+   6.2 If don't add token and still want to test api, please comment out the
+registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
+   .excludePathPatterns("/login/**", "/user/info", "/test/**");
+in the WebConfig.java<br/>
+7. How to get the token<br/>
+    7.1 Follow the step 3 to start the back end<br/>
+    7.2 Start the frontend, get the code from https://github.com/guardiangel/SpingBootDemoFrontEnd <br/>
+    7.3 Follow the steps in the Readme.md
