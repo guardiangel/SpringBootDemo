@@ -8,6 +8,8 @@ public final class QueryConstants {
 
     public static final String GET_ONLINEUSERIDLIST_SQL =
             "SELECT s FROM SysUser s";
+    public static final String GET_ONLINEUSER_BY_ID_SQL =
+            "SELECT s FROM SysUser s WHERE s.id=:id";
     public static final String SELECTMYSQLPAGE_SCORE_CLASS =
             " SELECT s FROM ScoreClass s " +
                     " WHERE (s.className=:className OR :className IS NULL) ORDER BY s.createTime DESC";

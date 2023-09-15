@@ -67,4 +67,8 @@ public class SysUserService {
     public List<SysUser> getUserByLoginName(String loginName) {
         return sysUserRepository.getUserByLoginName(loginName,null);
     }
+
+    public SysUser getOnlineUserById(Long id) {
+        return sysUserRepository.getOnlineUserById(id);
+    }
 }

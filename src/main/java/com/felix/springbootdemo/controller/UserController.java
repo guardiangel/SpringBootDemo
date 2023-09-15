@@ -9,6 +9,7 @@ import com.felix.springbootdemo.service.SysUserService;
 import com.felix.springbootdemo.utils.JSONResult;
 import com.felix.springbootdemo.utils.LoginUtils;
 import com.felix.springbootdemo.vo.UserVo;
+import com.felix.springbootdemo.vo.requestVo.SysUserRequestVo;
 import com.google.gson.Gson;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
@@ -55,5 +56,24 @@ public class UserController {
 
         return jsonResult.success(sysUserList);
     }
+
+    @PostMapping("/getOnlineUserById")
+    public JSONResult getOnlineUserById(@RequestBody SysUserRequestVo sysUserRequestVo) {
+
+        SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
+
+        sysUser.setPassword("");
+        sysUser.setSalt("");
+        sysUser.setStatus("");
+        sysUser.setDelFlag("");
+
+        log.info(Logger.EVENT_SUCCESS,
+                "getOnlineUserById(), the input parameter is :"
+                        + sysUserRequestVo.getId());
+
+        return jsonResult.success(sysUser);
+    }
+
+
 
 }
