@@ -17,6 +17,9 @@ public enum ErrorCodeEnums {
     ERROR_CODE_1011("1011", "The image verification code has expired, please click on the image to refresh！"),
     ERROR_CODE_1012("1012", "The image verification code is wrong, please re-enter it.！"),
 
+    //Validation error
+    ERROR_CODE_5555("5555", "Validation error. Please double check."),
+
 
     SYSTEM_ERROR("9999", "The system is out of business, please try again later.！");
 

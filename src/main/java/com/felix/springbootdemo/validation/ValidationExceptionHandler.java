@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.felix.springbootdemo.constants.ErrorCodeEnums.ERROR_CODE_5555;
+
 @ControllerAdvice
 public class ValidationExceptionHandler {
 
@@ -21,7 +23,9 @@ public class ValidationExceptionHandler {
 
         ex.getAllErrors().forEach(err -> errors.add(err.getDefaultMessage()));
 
-        Map<String, List<String>> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", ERROR_CODE_5555.getCode());
+        result.put("message", ERROR_CODE_5555.getMessage());
         result.put("errors", errors);
 
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
