@@ -35,6 +35,13 @@
     </properties>
     <dependencies>
 
+        <!--for validating the input paramters, but don't use the annotation in this jar
+         . Instead, use jakarta.validation.constraints.*-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>

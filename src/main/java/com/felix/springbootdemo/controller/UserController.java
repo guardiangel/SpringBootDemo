@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.Logger;
 import org.springframework.data.domain.PageRequest;
@@ -58,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/getOnlineUserById")
-    public JSONResult getOnlineUserById(@RequestBody SysUserRequestVo sysUserRequestVo) {
+    public JSONResult getOnlineUserById(@Valid @RequestBody SysUserRequestVo sysUserRequestVo) {
 
         SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
 
