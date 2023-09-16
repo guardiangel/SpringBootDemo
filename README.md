@@ -16,11 +16,12 @@ a) BackEnd<br/>
 4. Todo<br/>
     4.1 Password needs to be encrypted for the real business scenario.<br/>
 5. Key Point<br/>
-    Because the Gson doesn't support java.time.LocalDateTime and java.time.LocalDate by default,
+    5.1 Because the Gson doesn't support java.time.LocalDateTime and java.time.LocalDate by default,
     So we need to add an adapter for this situation. See GsonDateTimeConfiguration and GsonLocalDateTime for more details.<br/>
     Usage:<br/>
    @Resource(name = "typeAdapterRegistration")<br/>
    private Gson gson;<br/>
+    5.2 When using validation, don't use the annotation in spring-boot-starter-validation jar. Instead, use jakarta.validation.constraints.*<br/>
 
 6. Use PostMan to test APIs:<br/>
    6.1 Add token in the request header for each request<br/>
