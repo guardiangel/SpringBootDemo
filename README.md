@@ -22,6 +22,8 @@ a) BackEnd<br/>
    @Resource(name = "typeAdapterRegistration")<br/>
    private Gson gson;<br/>
     5.2 When using validation, don't use the annotation in spring-boot-starter-validation jar. Instead, use jakarta.validation.constraints.*<br/>
+    5.3 For each annotation in the input parameters needs to be designated relative validation group.
+    See SysUserRequestVo for more details.
 
 6. Use PostMan to test APIs:<br/>
    6.1 Add token in the request header for each request<br/>

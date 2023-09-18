@@ -6,17 +6,21 @@ import com.felix.springbootdemo.utils.JSONResult;
 import com.felix.springbootdemo.vo.requestVo.common.CommonQueryById;
 import com.felix.springbootdemo.vo.requestVo.sysuser.SysUserRequestVo;
 import com.felix.springbootdemo.vo.requestVo.sysuser.SysUserRequestVoGroup_Delete;
+import com.felix.springbootdemo.vo.requestVo.sysuser.SysUserRequestVoGroup_Update;
 import com.google.gson.Gson;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import org.apache.commons.beanutils.BeanUtils;
 import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.Logger;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @RestController(value = "userController")
@@ -51,7 +55,7 @@ public class UserController {
 
     @PostMapping("/getOnlineUserById")
     public JSONResult getOnlineUserById(@Validated(CommonQueryById.class)
-                                            @RequestBody SysUserRequestVo sysUserRequestVo) {
+                                        @RequestBody SysUserRequestVo sysUserRequestVo) {
 
         SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
 
@@ -67,6 +71,28 @@ public class UserController {
         return jsonResult.success(sysUser);
     }
 
+
+    @PostMapping("/updateSysUserInfo")
+    public JSONResult updateSysUserInfo(@Validated(SysUserRequestVoGroup_Update.class)
+                                        @RequestBody SysUserRequestVo sysUserRequestVo) {
+
+        SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
+        try {
+            BeanUtils.copyProperties(sysUser, sysUserRequestVo);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            log.error(Logger.EVENT_SUCCESS,
+                    "updateSysUserInfo(), error happens when copying attributes, the error is :"
+                            + e);
+        }
+
+        SysUser result = sysUserService.updateSysUserInfo(sysUser);
+
+        log.info(Logger.EVENT_SUCCESS,
+                "updateSysUserInfo(), the input parameter is :"
+                        + sysUserRequestVo);
+
+        return jsonResult.success(result);
+    }
 
 
 }

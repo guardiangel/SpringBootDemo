@@ -3,12 +3,14 @@ package com.felix.springbootdemo.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
+@DynamicUpdate
 @Table(name = "sys_job_log")
 public class SysJobLog {
     @Id

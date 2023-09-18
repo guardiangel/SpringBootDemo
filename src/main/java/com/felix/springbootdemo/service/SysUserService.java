@@ -71,4 +71,8 @@ public class SysUserService {
     public SysUser getOnlineUserById(Long id) {
         return sysUserRepository.getOnlineUserById(id);
     }
+
+    public SysUser updateSysUserInfo(SysUser sysUser) {
+        return sysUserRepository.save(sysUser);
+    }
 }

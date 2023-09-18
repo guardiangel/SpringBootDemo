@@ -6,12 +6,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
+@DynamicUpdate
 @Table(name = "sys_job")
 public class SysJob {
     @EmbeddedId
