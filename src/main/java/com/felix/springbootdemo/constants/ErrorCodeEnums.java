@@ -16,6 +16,7 @@ public enum ErrorCodeEnums {
     ERROR_CODE_1010("1010", "Image verification code cannot be empty！"),
     ERROR_CODE_1011("1011", "The image verification code has expired, please click on the image to refresh！"),
     ERROR_CODE_1012("1012", "The image verification code is wrong, please re-enter it.！"),
+    ERROR_CODE_6666("6666", "Can't delete admin"),
 
     //Validation error
     ERROR_CODE_5555("5555", "Validation error. Please double check."),

@@ -1,6 +1,7 @@
 package com.felix.springbootdemo.controller;
 
 import com.felix.springbootdemo.entity.SysUser;
+import com.felix.springbootdemo.exceptions.CustomException;
 import com.felix.springbootdemo.service.SysUserService;
 import com.felix.springbootdemo.utils.JSONResult;
 import com.felix.springbootdemo.vo.requestVo.common.CommonQueryById;
@@ -17,7 +18,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static com.felix.springbootdemo.constants.ErrorCodeEnums.ERROR_CODE_6666;
 
 @RestController(value = "userController")
 @RequestMapping("/users")
@@ -45,7 +50,7 @@ public class UserController {
 
     @PostMapping("/getOnlineUserById")
     public JSONResult<SysUser> getOnlineUserById(@Validated(CommonQueryById.class)
-                                        @RequestBody SysUserRequestVo sysUserRequestVo) {
+                                                 @RequestBody SysUserRequestVo sysUserRequestVo) {
 
         SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
 
@@ -67,7 +72,7 @@ public class UserController {
      */
     @PostMapping("/updateSysUserInfo")
     public JSONResult<SysUser> updateSysUserInfo(@Validated(SysUserRequestVoGroup_Update.class)
-                                        @RequestBody SysUserRequestVo sysUserRequestVo) {
+                                                 @RequestBody SysUserRequestVo sysUserRequestVo) {
 
         SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
         try {
@@ -93,7 +98,13 @@ public class UserController {
      */
     @PostMapping("/deleteSysUserById")
     public JSONResult<SysUser> deleteSysUserById(@Validated(SysUserRequestVoGroup_Delete.class)
-                                        @RequestBody SysUserRequestVo sysUserRequestVo) {
+                                                 @RequestBody SysUserRequestVo sysUserRequestVo) {
+        // 1 is admin, can't be deleted in this demo project
+        if (sysUserRequestVo.getId() == 1) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("message", ERROR_CODE_6666.getMessage());
+            return jsonResult.success(result, ERROR_CODE_6666.getCode());
+        }
 
         SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
 
