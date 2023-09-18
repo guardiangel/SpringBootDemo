@@ -13,7 +13,8 @@ import lombok.Setter;
 public class SysUserRequestVo {
     @NotNull(message = "The id is required.",
             groups = {CommonQueryById.class,
-                    SysUserRequestVoGroup_Update.class})
+                    SysUserRequestVoGroup_Update.class,
+                    SysUserRequestVoGroup_Delete.class})
     @Min(value = 1, message = "The id is at least 1.")
     private Long id;
 

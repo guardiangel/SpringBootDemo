@@ -7,9 +7,9 @@ public final class QueryConstants {
 
 
     public static final String GET_ONLINEUSERIDLIST_SQL =
-            "SELECT s FROM SysUser s";
+            "SELECT s FROM SysUser s WHERE s.delFlag='0'";
     public static final String GET_ONLINEUSER_BY_ID_SQL =
-            "SELECT s FROM SysUser s WHERE s.id=:id";
+            "SELECT s FROM SysUser s WHERE s.id=:id and s.delFlag='0'";
     public static final String SELECTMYSQLPAGE_SCORE_CLASS =
             " SELECT s FROM ScoreClass s " +
                     " WHERE (s.className=:className OR :className IS NULL) ORDER BY s.createTime DESC";
@@ -38,5 +38,5 @@ public final class QueryConstants {
                     " AND  (s.teaDesc LIKE %:teaDesc% OR :teaDesc IS NULL) )" +
                     " ORDER BY s.createTime DESC";
     public static final String GET_USER_BY_LOGINNAME = "SELECT s from SysUser s " +
-            " WHERE s.loginName=:loginName";
+            " WHERE s.loginName=:loginName and s.delFlag='0'";
 }

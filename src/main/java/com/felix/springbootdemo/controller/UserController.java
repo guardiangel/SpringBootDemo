@@ -59,11 +59,12 @@ public class UserController {
 
         SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
 
-        sysUser.setPassword("");
-        sysUser.setSalt("");
-        sysUser.setStatus("");
-        sysUser.setDelFlag("");
-
+        if (sysUser != null) {
+            sysUser.setPassword("");
+            sysUser.setSalt("");
+            sysUser.setStatus("");
+            sysUser.setDelFlag("");
+        }
         log.info(Logger.EVENT_SUCCESS,
                 "getOnlineUserById(), the input parameter is :"
                         + sysUserRequestVo.getId());
@@ -71,7 +72,12 @@ public class UserController {
         return jsonResult.success(sysUser);
     }
 
-
+    /**
+     * update userName, phonenumber, and sex.
+     *
+     * @param sysUserRequestVo
+     * @return
+     */
     @PostMapping("/updateSysUserInfo")
     public JSONResult updateSysUserInfo(@Validated(SysUserRequestVoGroup_Update.class)
                                         @RequestBody SysUserRequestVo sysUserRequestVo) {
@@ -89,6 +95,29 @@ public class UserController {
 
         log.info(Logger.EVENT_SUCCESS,
                 "updateSysUserInfo(), the input parameter is :"
+                        + sysUserRequestVo);
+
+        return jsonResult.success(result);
+    }
+
+    /**
+     * Delete user by user id logically.
+     * Update delFlag='1'
+     * @param sysUserRequestVo
+     * @return
+     */
+    @PostMapping("/deleteSysUserById")
+    public JSONResult deleteSysUserById(@Validated(SysUserRequestVoGroup_Delete.class)
+                                        @RequestBody SysUserRequestVo sysUserRequestVo) {
+
+        SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
+
+        sysUser.setDelFlag("1");//1 means delete logically.
+
+        SysUser result = sysUserService.updateSysUserInfo(sysUser);
+
+        log.info(Logger.EVENT_SUCCESS,
+                "deleteSysUserById(), the input parameter is :"
                         + sysUserRequestVo);
 
         return jsonResult.success(result);
