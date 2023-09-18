@@ -7,16 +7,12 @@ import com.felix.springbootdemo.vo.requestVo.common.CommonQueryById;
 import com.felix.springbootdemo.vo.requestVo.sysuser.SysUserRequestVo;
 import com.felix.springbootdemo.vo.requestVo.sysuser.SysUserRequestVoGroup_Delete;
 import com.felix.springbootdemo.vo.requestVo.sysuser.SysUserRequestVoGroup_Update;
-import com.google.gson.Gson;
 import jakarta.annotation.Resource;
-import jakarta.validation.Valid;
 import org.apache.commons.beanutils.BeanUtils;
 import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.Logger;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,21 +22,15 @@ import java.util.List;
 @RestController(value = "userController")
 @RequestMapping("/users")
 public class UserController {
-    private Logger log = ESAPI.getLogger(UserController.class);
-    @Resource(name = "redisTemplate")
-    private RedisTemplate redisTemplate;
+    private final Logger log = ESAPI.getLogger(UserController.class);
 
     @Resource(name = "jsonResult")
     private JSONResult jsonResult;
-
-    @Resource(name = "typeAdapterRegistration")
-    private Gson gson;
-
     @Resource(name = "sysUserService")
     private SysUserService sysUserService;
 
     @PostMapping("/getAllUsers")
-    public JSONResult getAllUsers() {
+    public JSONResult<List<SysUser>> getAllUsers() {
 
         Pageable pageable = PageRequest.of(0, Integer.MAX_VALUE);
 
@@ -54,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/getOnlineUserById")
-    public JSONResult getOnlineUserById(@Validated(CommonQueryById.class)
+    public JSONResult<SysUser> getOnlineUserById(@Validated(CommonQueryById.class)
                                         @RequestBody SysUserRequestVo sysUserRequestVo) {
 
         SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
@@ -74,12 +64,9 @@ public class UserController {
 
     /**
      * update userName, phonenumber, and sex.
-     *
-     * @param sysUserRequestVo
-     * @return
      */
     @PostMapping("/updateSysUserInfo")
-    public JSONResult updateSysUserInfo(@Validated(SysUserRequestVoGroup_Update.class)
+    public JSONResult<SysUser> updateSysUserInfo(@Validated(SysUserRequestVoGroup_Update.class)
                                         @RequestBody SysUserRequestVo sysUserRequestVo) {
 
         SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
@@ -103,16 +90,14 @@ public class UserController {
     /**
      * Delete user by user id logically.
      * Update delFlag='1'
-     * @param sysUserRequestVo
-     * @return
      */
     @PostMapping("/deleteSysUserById")
-    public JSONResult deleteSysUserById(@Validated(SysUserRequestVoGroup_Delete.class)
+    public JSONResult<SysUser> deleteSysUserById(@Validated(SysUserRequestVoGroup_Delete.class)
                                         @RequestBody SysUserRequestVo sysUserRequestVo) {
 
         SysUser sysUser = sysUserService.getOnlineUserById(sysUserRequestVo.getId());
 
-        sysUser.setDelFlag("1");//1 means delete logically.
+        sysUser.setDelFlag("1");//1 mean delete logically.
 
         SysUser result = sysUserService.updateSysUserInfo(sysUser);
 

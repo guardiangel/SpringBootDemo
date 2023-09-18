@@ -24,10 +24,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static com.felix.springbootdemo.constants.ErrorCodeEnums.ERROR_CODE_1008;
+
 @RestController(value = "loginController")
 @RequestMapping("/login")
 public class LoginController {
-    private Logger log = ESAPI.getLogger(LoginController.class);
+    private final Logger log = ESAPI.getLogger(LoginController.class);
     @Resource(name = "redisTemplate")
     private RedisTemplate redisTemplate;
 
@@ -124,12 +126,15 @@ public class LoginController {
 
     @GetMapping("/logout")
     public JSONResult logout(@RequestParam("token") String token) {
+        if (token == null || "".equals(token.trim())) {
+            throw new CustomException(ERROR_CODE_1008.getCode(), ERROR_CODE_1008.getMessage());
+        }
         boolean flag = redisTemplate.delete(token);
         if (!flag) {
             log.error(Logger.EVENT_FAILURE,
                     "Can't logout successfully, the requested token=" + token);
         }
-        return jsonResult;
+        return jsonResult.success("Delete success");
     }
 
 }
