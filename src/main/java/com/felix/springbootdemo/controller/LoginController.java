@@ -8,7 +8,9 @@ import com.felix.springbootdemo.exceptions.CustomException;
 import com.felix.springbootdemo.service.SysUserService;
 import com.felix.springbootdemo.utils.JSONResult;
 import com.felix.springbootdemo.utils.LoginUtils;
-import com.felix.springbootdemo.vo.UserVo;
+import com.felix.springbootdemo.vo.reponseVo.UserVo;
+import com.felix.springbootdemo.vo.requestVo.sysuser.SysUserRequestVo;
+import com.felix.springbootdemo.vo.requestVo.sysuser.SysUserRequestVoGroup_Login;
 import com.google.gson.Gson;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
@@ -19,6 +21,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,21 +63,10 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public JSONResult login(@RequestBody SysUser sysUser) {
+    public JSONResult login(@Validated(SysUserRequestVoGroup_Login.class)
+                                @RequestBody SysUserRequestVo sysUser) {
         if (ObjectUtils.isEmpty(sysUser)) {
             throw new CustomException(ErrorCodeEnums.ERROR_CODE_1000);
-        }
-        if (!StringUtils.hasLength(sysUser.getLoginName())) {
-            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1003);
-        }
-        if (!StringUtils.hasLength(sysUser.getPassword())) {
-            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1004);
-        }
-         if (!StringUtils.hasLength(sysUser.getUuid())) {
-            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1009);
-        }
-        if (!StringUtils.hasLength(sysUser.getImageCode())) {
-            throw new CustomException(ErrorCodeEnums.ERROR_CODE_1010);
         }
 
         String key = CommonConstants.LOGIN_CAPTCHA_CODE_KEY + sysUser.getUuid();

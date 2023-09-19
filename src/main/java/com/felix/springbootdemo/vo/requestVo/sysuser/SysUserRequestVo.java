@@ -30,4 +30,29 @@ public class SysUserRequestVo {
     @Size(min = 1, max = 1, message = "sex must be 1 character long.",
             groups = {SysUserRequestVoGroup_Update.class})
     private String sex;
+
+    @NotBlank(message = "The loginName should not be null",
+            groups = {SysUserRequestVoGroup_Login.class})
+    @Size(min = 1, message = "loginName must be 1 character long.",
+            groups = {SysUserRequestVoGroup_Login.class})
+    private String loginName;
+    @NotBlank(message = "The password should not be null",
+            groups = {SysUserRequestVoGroup_Login.class})
+    @Size(min = 1, message = "password must be 1 character long.",
+            groups = {SysUserRequestVoGroup_Login.class})
+    private String password;
+
+    @NotBlank(message = "The uuid should not be null",
+            groups = {SysUserRequestVoGroup_Login.class})
+    @Size(min = 1, message = "uuid must be 1 character long.",
+            groups = {SysUserRequestVoGroup_Login.class})
+    private String uuid;
+
+    @NotBlank(message = "The imageCode should not be null",
+            groups = {SysUserRequestVoGroup_Login.class})
+    @Size(min = 1, message = "imageCode must be 1 character long.",
+            groups = {SysUserRequestVoGroup_Login.class})
+    private String imageCode;
+
+
 }

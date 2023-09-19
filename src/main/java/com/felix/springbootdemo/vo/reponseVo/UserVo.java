@@ -1,4 +1,4 @@
-package com.felix.springbootdemo.vo;
+package com.felix.springbootdemo.vo.reponseVo;
 
 import lombok.Data;
 
