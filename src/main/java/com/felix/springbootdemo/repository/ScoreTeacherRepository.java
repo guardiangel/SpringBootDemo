@@ -12,8 +12,11 @@ import java.util.List;
 
 @Repository(value = "scoreTeacherRepository")
 public interface ScoreTeacherRepository extends JpaRepository<ScoreTeacher, Long> {
-    @Query(value = QueryConstants.SELECTMYSQLPAGE_SCORETEACHER,nativeQuery = false)
+    @Query(value = QueryConstants.SELECTMYSQLPAGE_SCORETEACHER, nativeQuery = false)
     List<ScoreTeacher> selectMySqlPage(@Param("teaName") String teaName,
                                        @Param("teaPhone") String teaPhone,
                                        @Param("teaDesc") String teaDesc, Pageable pageable);
+
+    @Query(value = QueryConstants.GET_SCORETEACHER_BYID, nativeQuery = false)
+    ScoreTeacher getScoreTeacherById(@Param("id") Long id);
 }

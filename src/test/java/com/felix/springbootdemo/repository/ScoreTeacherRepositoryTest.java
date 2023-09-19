@@ -13,11 +13,21 @@ import java.util.List;
 class ScoreTeacherRepositoryTest {
     @Resource(name = "scoreTeacherRepository")
     private ScoreTeacherRepository scoreTeacherRepository;
+
     @Test
     void selectMySqlPage() {
         Pageable pageable = PageRequest.of(1, 2);
         List<ScoreTeacher> scoreTeacherList
-                = scoreTeacherRepository.selectMySqlPage(null,null,null, pageable);
-        scoreTeacherList.forEach(scoreTeacher -> System.err.println(scoreTeacher+" "));
+                = scoreTeacherRepository.selectMySqlPage(null, null, null, pageable);
+        scoreTeacherList.forEach(scoreTeacher -> System.err.println(scoreTeacher + " "));
+    }
+
+    @Test
+    void getScoreTeacherById() {
+        Long id = 4L;
+        ScoreTeacher scoreTeacher
+//                = scoreTeacherRepository.getScoreTeacherById(id);
+                = scoreTeacherRepository.getReferenceById(id);
+        System.err.println(scoreTeacher);
     }
 }
